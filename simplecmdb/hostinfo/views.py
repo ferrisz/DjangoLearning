@@ -19,7 +19,7 @@ def collect(req):
         product = obj['product']
         sn = obj['sn']
         try:
-            host = Host.object.get(sn=sn)
+            host = Host.objects.get(sn=sn)
         except:
             host = Host()
         host.hostname = hostname
