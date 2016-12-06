@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from hostinfo.models import Host
 import pickle
+import json
 # Create your views here.
 
 def collect(req):
     if req.POST:
-        obj = pickle.loads(req.body)
+        # obj = pickle.loads(req.body)
+        obj = json.loads(req.body)
         hostname = obj['hostname']
         ip = obj['ip']
         cpu_model = obj['cpu_model']
