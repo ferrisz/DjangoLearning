@@ -20,4 +20,5 @@ from hostinfo import views as hostinfo_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hostinfo/collect/$', hostinfo_views.collect),
+    url(r'^hostinfo/getjson/$', hostinfo_views.getjson),
 ]

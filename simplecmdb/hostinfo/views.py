@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from hostinfo.models import Host
+from hostinfo.models import Host, HostGroup
 import pickle
 import json
 # Create your views here.
@@ -35,3 +35,14 @@ def collect(req):
         return HttpResponse('OK')
     else:
         return HttpResponse('not data')
+
+def getjson(req):
+    ret_list = []
+    hg = HostGroup.objects.all()
+    for g in hg:
+        ret = {'groupname': g.groupname, 'members': []}
+        for h in g.member.all():
+            ret_h = {'hostname': h.hostname, 'ip': h.ip}
+            ret['members'].append(ret_h)
+        ret_list.append(ret)
+    return HttpResponse(json.dumps(ret_list))
