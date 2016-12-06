@@ -46,3 +46,14 @@ def getjson(req):
             ret['members'].append(ret_h)
         ret_list.append(ret)
     return HttpResponse(json.dumps(ret_list))
+
+def gettxt(req):
+    res = ''
+    hg = HostGroup.objects.all()
+    for g in hg:
+        groupname = g.groupname
+        for h in g.member.all():
+            hostname = h.hostname
+            ip = h.ip
+            res += groupname + ' ' + hostname + ' ' + ip + '\n'
+    return HttpResponse(res)

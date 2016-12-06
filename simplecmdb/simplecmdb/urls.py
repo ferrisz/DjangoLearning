@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hostinfo/collect/$', hostinfo_views.collect),
     url(r'^hostinfo/getjson/$', hostinfo_views.getjson),
+    url(r'^hostinfo/gettxt/$', hostinfo_views.gettxt),
 ]
