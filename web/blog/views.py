@@ -11,6 +11,21 @@ def index(request):
     return HttpResponse(t.render(c))
 
 def db(req):
-    n1 = Host(hostname = 'node2', ip = '2.2.2.2')
-    n1.save()
-    return HttpResponse('OK')
+    if req.POST:
+        hostname = req.POST.get('hostname')
+        ip = req.POST.get('ip')
+        host = Host()
+        host.hostname = hostname
+        host.ip = ip
+        host.save()
+        return HttpResponse('OK')
+    elif req.GET:
+        hostname = req.GET.get('hostname')
+        ip = req.GET.get('ip')
+        host = Host()
+        host.hostname = hostname
+        host.ip = ip
+        host.save()
+        return HttpResponse('OK')
+    else:
+        return HttpResponse('NO DATA')
