@@ -18,8 +18,10 @@ def collect(req):
         vendor = obj['vendor']
         product = obj['product']
         sn = obj['sn']
-
-        host = Host()
+        try:
+            host = Host.object.get(sn=sn)
+        except:
+            host = Host()
         host.hostname = hostname
         host.ip = ip
         host.cpu_model = cpu_model
