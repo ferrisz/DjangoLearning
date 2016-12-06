@@ -1,19 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from hostinfo.models import Host
+import pickle
 # Create your views here.
 
 def collect(req):
     if req.POST:
-        hostname = req.POST.get('hostname')
-        ip = req.POST.get('ip')
-        cpu_model = req.POST.get('cpu_model')
-        cpu_num = req.POST.get('cpu_num')
-        memory = req.POST.get('memory')
-        osver = req.POST.get('osver')
-        vendor = req.POST.get('vendor')
-        product = req.POST.get('product')
-        sn = req.POST.get('sn')
+        obj = pickle.loads(req.body)
+        hostname = obj['hostname']
+        ip = obj['ip']
+        cpu_model = obj['cpu_model']
+        cpu_num = obj['cpu_num']
+        memory = obj['memory']
+        osver = obj['osver']
+        vendor = obj['vendor']
+        product = obj['product']
+        sn = obj['sn']
 
         host = Host()
         host.hostname = hostname
